@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,500;12..96,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		--text: #000000;
+		--background: #edfce9;
+		--primary: #20cf55;
+		--secondary: #eac2f5;
+		--accent: #cb2098;
+	}
+	.dark {
+		--text: #ffffff;
+		--background: #071603;
+		--primary: #30df64;
+		--secondary: #320a3d;
+		--accent: #df34ac;
+	}
+}
+
+html {
+	font-family: 'Bricolage Grotesque', sans-serif;
+}
