@@ -1,5 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-	<div> Hello </div>
+	<div>
+		<UiButton intent="primary" />
+	</div>
 </template>
