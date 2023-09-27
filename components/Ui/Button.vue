@@ -4,21 +4,18 @@
 
 	const buttonClass = computed(() => {
 		return twMerge(
-			cva(
-				'px-3 py-1 rounded-lg flex hover:shadow-md focus:shadow-md justify-center items-center transition-all',
-				{
-					variants: {
-						intent: {
-							primary: 'bg-primary-100 text-text-900 hover:bg-primary-200',
-							secondary: 'bg-secondary-100 text-text-900 hover:bg-secondary-200',
-							accent: 'bg-accent-100 text-text-900 hover:bg-accent-200',
-						},
-						size: {
-							icon: 'h-10 w-10 px-1 py-1',
-						},
+			cva('px-3 py-1 rounded-lg flex hover:shadow-md  justify-center items-center transition-all', {
+				variants: {
+					intent: {
+						primary: 'bg-primary-100 text-text-900 hover:bg-primary-200',
+						secondary: 'bg-secondary-100 text-text-900 hover:bg-secondary-200',
+						accent: 'bg-accent-100 text-text-900 hover:bg-accent-200',
+					},
+					size: {
+						icon: 'h-10 w-10 px-1 py-1',
 					},
 				},
-			)({
+			})({
 				intent: intent,
 				size: size,
 			}),

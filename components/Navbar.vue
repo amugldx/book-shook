@@ -5,9 +5,11 @@
 
 <template>
 	<nav
-		class="flex items-center justify-between px-3 py-2 border rounded-lg border-text-900 dark:border-text-50">
-		<h1 class="text-xl font-bold text-text-900 dark:text-text-50"> Book Shook </h1>
-		<ul class="flex space-x-2">
+		class="flex items-center justify-between px-3 py-2 border-2 rounded-lg lg:px-5 border-text-900 dark:border-text-50">
+		<h1 class="text-xl font-bold md:text-2xl lg:text-3xl text-text-900 dark:text-text-50">
+			Book Shook
+		</h1>
+		<ul class="flex space-x-2 lg:space-x-3">
 			<li>
 				<UiButton
 					@click="toggleDark()"

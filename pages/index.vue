@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-	<div>
-		<UiButton intent="primary" />
-	</div>
+	<main>
+		<FoldersList />
+	</main>
 </template>
