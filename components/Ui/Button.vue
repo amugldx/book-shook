@@ -13,6 +13,7 @@
 					},
 					size: {
 						icon: 'h-10 w-10 px-1 py-1',
+						large: 'h-10',
 					},
 				},
 			})({
@@ -24,7 +25,7 @@
 
 	const { intent = 'primary', size } = defineProps<{
 		intent: 'primary' | 'secondary' | 'accent';
-		size?: 'icon';
+		size?: 'icon' | 'large';
 	}>();
 </script>
 

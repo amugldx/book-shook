@@ -11,7 +11,7 @@
 
 <template>
 	<div
-		class="grid w-40 h-40 grid-rows-4 border-2 rounded-lg dark:border-background-50 border-text-900">
+		class="grid w-40 h-40 grid-rows-4 transition-all border-2 rounded-lg dark:border-background-50 border-text-900 hover:shadow-lg">
 		<div
 			@click="$emit('folderIconClicked')"
 			:class="
