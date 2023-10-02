@@ -6,7 +6,9 @@
 <template>
 	<nav
 		class="flex items-center justify-between px-3 py-2 border-2 rounded-lg lg:px-5 border-text-900 dark:border-text-50">
-		<h1 class="text-xl font-bold md:text-2xl lg:text-3xl text-text-900 dark:text-text-50">
+		<h1
+			@click="navigateTo('/')"
+			class="text-xl font-bold transition-all hover:cursor-pointer md:text-2xl lg:text-3xl text-text-900 dark:text-text-50">
 			Book Shook
 		</h1>
 		<ul class="flex space-x-2 lg:space-x-3">
