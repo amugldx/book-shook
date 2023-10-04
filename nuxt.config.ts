@@ -9,4 +9,11 @@ export default defineNuxtConfig({
 			autoprefixer: {},
 		},
 	},
+	vite: {
+		vue: {
+			script: {
+				defineModel: true,
+			},
+		},
+	},
 });

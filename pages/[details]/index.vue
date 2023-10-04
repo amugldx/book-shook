@@ -4,6 +4,7 @@
 	});
 
 	const openModal = ref<boolean>(false);
+	const inputValue = ref<string>();
 </script>
 
 <template>
@@ -16,7 +17,7 @@
 			enter-active-class="animate__animated animate__fadeIn animate__faster"
 			leave-active-class="animate__animated animate__fadeOut animate__faster"
 			mode="out-in">
-			<Modal
+			<UiModal
 				@close-modal="openModal = false"
 				v-if="openModal">
 				<template #header>
@@ -24,7 +25,12 @@
 						>Add New Link</h3
 					>
 				</template>
-				<template #default></template>
+				<template #default>
+					<UiInput
+						label="Name"
+						v-model="inputValue"></UiInput>
+					{{ inputValue }}
+				</template>
 				<template #footer>
 					<UiButton
 						intent="accent"
@@ -32,7 +38,7 @@
 						Submit
 					</UiButton>
 				</template>
-			</Modal>
+			</UiModal>
 		</Transition>
 	</div>
 </template>

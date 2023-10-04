@@ -29,11 +29,8 @@ model Folder {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  name     String   @unique
-  links    Link[]
-  folders  Folder[] @relation("folder")
-  Folder   Folder?  @relation("folder", fields: [folderId], references: [id])
-  folderId String?  @db.Uuid
+  name  String @unique
+  links Link[]
 
   @@map("folders")
 }
@@ -43,11 +40,8 @@ model Link {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  name      String
-  url       String    @unique
-  priority  Priority  @default(MEDIUM)
-  temporary Boolean   @default(false)
-  delAfter  DateTime? @db.Time()
+  name String
+  url  String @unique
 
   Folder   Folder? @relation(fields: [folderId], references: [id])
   folderId String? @db.Uuid
