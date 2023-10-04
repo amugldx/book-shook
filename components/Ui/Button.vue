@@ -4,7 +4,7 @@
 
 	const buttonClass = computed(() => {
 		return twMerge(
-			cva('px-3 py-1 rounded-lg flex hover:shadow-md  justify-center items-center transition-all', {
+			cva('px-4 py-1 rounded-lg flex hover:shadow-md  justify-center items-center transition-all', {
 				variants: {
 					intent: {
 						primary: 'bg-primary-100 text-text-900 hover:bg-primary-200',

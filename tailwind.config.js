@@ -10,6 +10,9 @@ module.exports = {
 	darkMode: 'class',
 	theme: {
 		extend: {
+			gridTemplateRows: {
+				12: 'repeat(12, minmax(0, 1fr))',
+			},
 			colors: {
 				text: {
 					50: 'var(--text-50)',

@@ -1,7 +1,9 @@
 <script setup lang="ts">
-	const {} = defineProps<{
+	const { folderName } = defineProps<{
 		folderName: string;
 	}>();
+
+	defineEmits(['newLinkClicked']);
 
 	function renameFolder() {}
 	function deleteFolder() {}
@@ -43,7 +45,7 @@
 		</div>
 		<div class="flex items-center justify-center pt-5 md:pt-6 lg:pt-9 xl:pt-1">
 			<Folder
-				@folder-icon-clicked=""
+				@folder-icon-clicked="$emit('newLinkClicked')"
 				folder-bg="bg-accent-100"
 				icon-name="solar:link-outline"
 				size="60px">
