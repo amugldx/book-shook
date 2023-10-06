@@ -35,7 +35,7 @@
 			</li>
 			<li>
 				<UiButton
-					intent="secondary"
+					intent="accent"
 					size="icon">
 					<Icon
 						name="solar:logout-outline"

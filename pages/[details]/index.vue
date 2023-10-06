@@ -4,7 +4,8 @@
 	});
 
 	const openModal = ref<boolean>(false);
-	const inputValue = ref<string>();
+	const nameInputValue = ref<string>();
+	const linkInputValue = ref<string>();
 </script>
 
 <template>
@@ -26,11 +27,15 @@
 					>
 				</template>
 				<template #default>
-					<UiInput
-						label="Name"
-						:open-modal="openModal"
-						:focus="true"
-						v-model="inputValue"></UiInput>
+					<div class="space-y-4">
+						<UiInput
+							label="Name"
+							:focus="true"
+							v-model="nameInputValue" />
+						<UiInput
+							label="Link"
+							v-model="linkInputValue" />
+					</div>
 				</template>
 				<template #footer>
 					<UiButton

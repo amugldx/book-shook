@@ -5,14 +5,32 @@
 
 	defineEmits(['newLinkClicked']);
 
-	function renameFolder() {}
+	const renameFolderClicked = ref<boolean>(false);
+	const renameFolderInputElement = ref<HTMLInputElement>();
+
+	function renameFolder() {
+		renameFolderClicked.value = true;
+	}
 	function deleteFolder() {}
+
+	watchEffect(() => {
+		if (renameFolderClicked) {
+			renameFolderInputElement.value?.focus();
+		}
+	});
 </script>
 
 <template>
 	<main class="pt-5 md:pt-6 lg:pt-9 xl:pt-10">
 		<div class="flex items-center justify-between">
+			<input
+				v-if="renameFolderClicked"
+				ref="renameFolderInputElement"
+				@focusout="renameFolderClicked = false"
+				class="text-xl bg-transparent focus:outline-none focus:ring-0 dark:text-background-50 text-text-900 md:text-2xl lg:text-3xl xl:text-4xl font-bold max-w-[50%]"
+				type="text" />
 			<h1
+				v-else
 				class="text-xl dark:text-background-50 text-text-900 md:text-2xl lg:text-3xl xl:text-4xl font-bold max-w-[50%]"
 				>{{ folderName }}</h1
 			>
