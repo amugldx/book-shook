@@ -28,8 +28,9 @@
 				<template #default>
 					<UiInput
 						label="Name"
+						:open-modal="openModal"
+						:focus="true"
 						v-model="inputValue"></UiInput>
-					{{ inputValue }}
 				</template>
 				<template #footer>
 					<UiButton

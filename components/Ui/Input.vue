@@ -1,9 +1,18 @@
 <script setup lang="ts">
-	const inputValue = defineModel<string>('inputValue');
-	const { type = 'text' } = defineProps<{
+	const inputValue = defineModel<string>();
+	const { type = 'text', focus } = defineProps<{
 		type?: 'text' | 'password';
 		label: string;
+		focus?: boolean;
 	}>();
+
+	const inputRef = ref<HTMLInputElement>();
+
+	watchEffect(() => {
+		if (focus) {
+			inputRef.value?.focus();
+		}
+	});
 </script>
 
 <template>
@@ -14,8 +23,9 @@
 			>{{ label }}</label
 		>
 		<input
-			class="h-10 px-3 bg-transparent border-2 rounded-md md:w-full text-text-900 dark:text-text-50 border-text-900 dark:border-text-50"
+			class="h-10 px-3 bg-transparent border-2 rounded-md focus:ring-0 focus:ring-offset-0 md:w-full text-text-900 dark:text-text-50 border-text-900 dark:border-text-50"
 			:type="type"
+			ref="inputRef"
 			v-model="inputValue"
 			:id="label.toLowerCase()" />
 	</div>

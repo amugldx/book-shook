@@ -16,7 +16,7 @@
 			@click="$emit('folderIconClicked')"
 			:class="
 				twMerge(
-					'flex items-center justify-center rounded-t-lg bg-secondary-50 row-span-3 border-b-2 dark:border-background-50 border-text-900 hover:cursor-pointer',
+					'flex items-center justify-center rounded-t-md bg-secondary-50 row-span-3 border-b-2 dark:border-background-50 border-text-900 hover:cursor-pointer',
 					folderBg,
 				)
 			">

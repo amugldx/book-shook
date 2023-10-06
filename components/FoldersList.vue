@@ -29,7 +29,7 @@
 					ref="addFolderInput"
 					type="text"
 					@focusout="addFolderClicked = false"
-					class="w-full h-full px-2 bg-transparent rounded-b-lg dark:bg-transparent dark:text-background-50 focus:ring-0 focus:ring-offset-0" />
+					class="w-full h-full px-2 bg-transparent rounded-b-md dark:bg-transparent dark:text-background-50 focus:ring-0 focus:ring-offset-0" />
 				<span
 					class="font-medium"
 					@click="addFolder"
