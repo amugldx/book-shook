@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 const bodySchema = z.object({
-	name: z.string(),
+	id: z.string().uuid(),
 });
 
 export default defineEventHandler(async event => {
@@ -18,23 +18,11 @@ export default defineEventHandler(async event => {
 		);
 	}
 
-	const folder = await event.context.prisma.folder
-		.create({
-			data: {
-				name: body.name,
-			},
-		})
-		.catch(e => {
-			if (e) {
-				return sendError(
-					event,
-					createError({
-						statusMessage: 'folder already exists',
-						statusCode: 400,
-					}),
-				);
-			}
-		});
+	await event.context.prisma.folder.delete({
+		where: {
+			id: body.id,
+		},
+	});
 
-	return folder;
+	return true;
 });
