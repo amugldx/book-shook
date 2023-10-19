@@ -47,7 +47,7 @@ export default defineEventHandler(async event => {
 	setCookie(event, 'BookShookUser', user.id, {
 		httpOnly: true,
 	});
-	setCookie(event, 'BookShookLogged', true, {
+	setCookie(event, 'BookShookLogged', 'true', {
 		httpOnly: false,
 	});
 
