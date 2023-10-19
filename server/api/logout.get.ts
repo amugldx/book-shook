@@ -1,5 +1,5 @@
 export default defineEventHandler(async event => {
-	const cookies = await parseCookies(event);
+	const cookies = parseCookies(event);
 
 	if (cookies.BookShookUser) {
 		deleteCookie(event, 'BookShookUser');
