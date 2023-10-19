@@ -3,6 +3,7 @@ export default defineEventHandler(async event => {
 
 	if (cookies.BookShookUser) {
 		deleteCookie(event, 'BookShookUser');
+		deleteCookie(event, 'BookShookLogged');
 		return true;
 	} else {
 		return sendError(
