@@ -20,6 +20,8 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  folder Folder[]
+
   @@map("users")
 }
 
@@ -30,6 +32,9 @@ model Folder {
 
   name  String @unique
   links Link[]
+
+  User   User?   @relation(fields: [userId], references: [id])
+  userId String? @db.Uuid
 
   @@map("folders")
 }
