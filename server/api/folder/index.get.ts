@@ -11,6 +11,10 @@ export default defineEventHandler(async event => {
 		);
 	}
 
-	const folders = await event.context.prisma.folder.findMany();
+	const folders = await event.context.prisma.folder.findMany({
+		include: {
+			links: true,
+		},
+	});
 	return folders;
 });
