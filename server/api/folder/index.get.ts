@@ -12,6 +12,9 @@ export default defineEventHandler(async event => {
 	}
 
 	const folders = await event.context.prisma.folder.findMany({
+		where: {
+			userId: cookies.BookShookUser,
+		},
 		include: {
 			links: true,
 		},
