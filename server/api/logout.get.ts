@@ -1,9 +1,10 @@
 export default defineEventHandler(async event => {
 	const cookies = parseCookies(event);
 
-	if (cookies.BookShookUser) {
+	if (cookies.BookShookUser || cookies.BookShookTest) {
 		deleteCookie(event, 'BookShookUser');
 		deleteCookie(event, 'BookShookLogged');
+		deleteCookie(event, 'BookShookTest');
 		return true;
 	} else {
 		return sendError(
