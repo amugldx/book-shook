@@ -22,6 +22,7 @@ export default defineEventHandler(async event => {
 		.create({
 			data: {
 				name: body.name,
+				userId: cookies.BookShookUser,
 			},
 		})
 		.catch(e => {
