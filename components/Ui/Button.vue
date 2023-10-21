@@ -23,14 +23,23 @@
 		);
 	});
 
-	const { intent = 'primary', size } = defineProps<{
+	const {
+		intent = 'primary',
+		size,
+		type,
+	} = defineProps<{
 		intent: 'primary' | 'secondary' | 'accent';
 		size?: 'icon' | 'large';
+		type?: 'submit';
 	}>();
 </script>
 
 <template>
 	<div>
-		<button :class="buttonClass"><slot /></button>
+		<button
+			:class="buttonClass"
+			:type="type"
+			><slot
+		/></button>
 	</div>
 </template>
