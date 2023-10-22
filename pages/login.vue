@@ -2,8 +2,6 @@
 	const username = ref<string>('test');
 	const password = ref<string>('test');
 
-	const isLoading = ref<boolean>(false);
-
 	async function login() {
 		const { data, pending } = await useFetch('/api/login', {
 			method: 'POST',
@@ -12,9 +10,7 @@
 				password: password.value,
 			},
 		});
-		isLoading.value = pending.value;
 		if (data) {
-			isLoading.value = false;
 			navigateTo('/');
 		}
 	}
@@ -67,7 +63,6 @@
 							@handleClick="login"
 							intent="primary"
 							size="large"
-							:disabled="isLoading"
 							type="submit"
 							>Login</UiButton
 						>
