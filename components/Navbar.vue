@@ -2,14 +2,11 @@
 	const isDark = useDark();
 	const toggleDark = useToggle(isDark);
 
-	const isLoading = ref<boolean>();
-
 	async function handleLogout() {
-		const { data, pending } = await useFetch('/api/logout');
+		const { data } = await useFetch('/api/logout');
 		if (data) {
 			navigateTo('/login');
 		}
-		isLoading.value = pending.value;
 	}
 </script>
 
@@ -24,7 +21,7 @@
 		<ul class="flex space-x-2 lg:space-x-3">
 			<li>
 				<UiButton
-					@click="toggleDark()"
+					@handle-click="toggleDark()"
 					intent="primary"
 					size="icon">
 					<Transition
@@ -45,8 +42,7 @@
 			</li>
 			<li>
 				<UiButton
-					@click="handleLogout"
-					:is-loading="isLoading"
+					@handle-click="handleLogout"
 					intent="accent"
 					size="icon">
 					<Icon
