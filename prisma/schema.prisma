@@ -33,7 +33,7 @@ model Folder {
   name  String @unique
   links Link[]
 
-  User   User?   @relation(fields: [userId], references: [id])
+  User   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String? @db.Uuid
 
   @@map("folders")
@@ -47,7 +47,7 @@ model Link {
   name String
   url  String
 
-  Folder   Folder? @relation(fields: [folderId], references: [id])
+  Folder   Folder? @relation(fields: [folderId], references: [id], onDelete: Cascade)
   folderId String? @db.Uuid
 
   @@map("links")
