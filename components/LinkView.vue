@@ -1,17 +1,31 @@
 <script setup lang="ts">
-	const { folderName } = defineProps<{
-		folderName: string;
-	}>();
+	const store = useFolderStore();
+	const { renameFolder, deleteFolder } = store;
+	const { currentFolder } = storeToRefs(store);
 
 	defineEmits(['newLinkClicked']);
 
 	const renameFolderClicked = ref<boolean>(false);
 	const renameFolderInputElement = ref<HTMLInputElement>();
+	const renameInput = ref<string>();
 
-	function renameFolder() {
+	function onRenameFolderClicked() {
 		renameFolderClicked.value = true;
 	}
-	function deleteFolder() {}
+
+	async function onRenameFolder() {
+		if (renameInput.value && currentFolder.value) {
+			await renameFolder(currentFolder.value.id, renameInput.value);
+		}
+		renameFolderClicked.value = false;
+	}
+
+	async function onDeleteFolder(folderId: string | undefined) {
+		if (folderId) {
+			await deleteFolder(folderId);
+			navigateTo('/');
+		}
+	}
 
 	watchEffect(() => {
 		if (renameFolderClicked) {
@@ -25,14 +39,16 @@
 		<div class="flex items-center justify-between">
 			<input
 				v-if="renameFolderClicked"
+				v-model="renameInput"
 				ref="renameFolderInputElement"
-				@focusout="renameFolderClicked = false"
+				@focusout="onRenameFolder"
+				@keyup.enter="onRenameFolder"
 				class="text-xl bg-transparent focus:outline-none focus:ring-0 dark:text-background-50 text-text-900 md:text-2xl lg:text-3xl xl:text-4xl font-bold max-w-[50%]"
 				type="text" />
 			<h1
 				v-else
 				class="text-xl dark:text-background-50 text-text-900 md:text-2xl lg:text-3xl xl:text-4xl font-bold max-w-[50%]"
-				>{{ folderName }}</h1
+				>{{ currentFolder?.name }}</h1
 			>
 			<div class="flex items-center space-x-1 md:space-x-2 lg:space-x-3">
 				<UiButton
@@ -44,7 +60,7 @@
 						size="20px"
 				/></UiButton>
 				<UiButton
-					@click="renameFolder"
+					@handle-click="onRenameFolderClicked"
 					intent="secondary"
 					size="large"
 					><Icon
@@ -52,7 +68,7 @@
 						size="20px"
 				/></UiButton>
 				<UiButton
-					@click="deleteFolder"
+					@handle-click="onDeleteFolder(currentFolder?.id)"
 					intent="accent"
 					size="icon"
 					><Icon

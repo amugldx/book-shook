@@ -1,4 +1,7 @@
 <script setup lang="ts">
+	const store = useFolderStore();
+	const { currentFolder } = storeToRefs(store);
+
 	definePageMeta({
 		middleware: ['folder-middleware'],
 	});
@@ -12,7 +15,7 @@
 	<div>
 		<LinkView
 			@new-link-clicked="openModal = true"
-			:folder-name="$route.params.details.toString()" />
+			:currentFolder="currentFolder" />
 		<Transition
 			name="custom-classes"
 			enter-active-class="animate__animated animate__fadeIn animate__faster"

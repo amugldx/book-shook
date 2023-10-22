@@ -1,12 +1,35 @@
 <script setup lang="ts">
-	import { folders } from '../data';
+	import type { Folder } from '~/types/folder';
+
+	const router = useRouter();
+	const store = useFolderStore();
+	const { fetchAllFolders, addNewFolder, setCurrentFolder } = store;
+	const { folders } = storeToRefs(store);
 
 	const addFolderClicked = ref<boolean>(false);
 	const addFolderInput = ref<HTMLInputElement>();
 
+	const inputValue = ref<string>();
+
+	async function submitAddFolder() {
+		if (inputValue.value) {
+			await addNewFolder(inputValue.value);
+		}
+		inputValue.value = '';
+		addFolderClicked.value = false;
+	}
+
+	function onFolderClicked(folderName: string, folder: Folder) {
+		setCurrentFolder(folder);
+		router.push({ path: `/${folderName}` });
+	}
+
 	function addFolder() {
 		addFolderClicked.value = true;
 	}
+
+	await fetchAllFolders();
+
 	watchEffect(() => {
 		if (addFolderInput.value) {
 			addFolderInput.value.focus();
@@ -27,8 +50,10 @@
 				><input
 					v-if="addFolderClicked"
 					ref="addFolderInput"
+					v-model="inputValue"
 					type="text"
-					@focusout="addFolderClicked = false"
+					@keyup.enter="submitAddFolder"
+					@focusout="submitAddFolder"
 					class="w-full h-full px-2 bg-transparent rounded-b-md dark:bg-transparent dark:text-background-50 focus:outline-none focus:ring-0" />
 				<span
 					class="font-medium"
@@ -41,15 +66,15 @@
 		<div
 			class="justify-self-center"
 			v-for="folder in folders"
-			:key="folder.id">
+			:key="folder?.id">
 			<Folder
-				@folder-icon-clicked="$router.push({ path: `/${folder.name}` })"
+				@folder-icon-clicked="onFolderClicked(folder?.name, folder)"
 				folder-bg="bg-secondary-100"
 				icon-name="ph:folder-thin"
 				size="100px">
 				<div
 					class="flex items-center justify-center text-xs font-medium text-text-900 dark:text-background-50"
-					>{{ folder.name }}</div
+					>{{ folder?.name }}</div
 				>
 			</Folder>
 		</div>
