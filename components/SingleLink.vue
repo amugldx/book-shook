@@ -1,10 +1,13 @@
 <script setup lang="ts">
 	import { twMerge } from 'tailwind-merge';
+	const store = useLinkStore();
+	const { renameLink, deleteLink } = store;
 
-	const { linkName, link, folderBg } = defineProps<{
+	const { linkName, link, folderBg, id } = defineProps<{
 		linkName: string;
 		link: string;
 		folderBg?: string;
+		id: string;
 	}>();
 
 	const emit = defineEmits(['sumbitRenamedLink']);
@@ -13,9 +16,15 @@
 	const nameInputValue = ref<string>(linkName);
 	const linkInputValue = ref<string>(link);
 
-	function submitRenamedLinkHandler() {
-		emit('sumbitRenamedLink');
-		openModal.value = false;
+	async function submitRenamedLinkHandler() {
+		if (nameInputValue.value && linkInputValue.value) {
+			await renameLink(id, nameInputValue.value, linkInputValue.value);
+			openModal.value = false;
+		}
+	}
+
+	async function onDeleteLink() {
+		await deleteLink(id);
 	}
 </script>
 
@@ -44,7 +53,7 @@
 		</NuxtLink>
 		<div class="flex items-center justify-around row-span-3">
 			<UiButton
-				@click="openModal = true"
+				@handle-click="openModal = true"
 				intent="secondary"
 				size="icon"
 				><Icon
@@ -52,6 +61,7 @@
 					size="20px"
 			/></UiButton>
 			<UiButton
+				@handle-click="onDeleteLink"
 				intent="accent"
 				size="icon"
 				><Icon

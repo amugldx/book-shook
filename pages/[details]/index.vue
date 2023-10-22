@@ -1,5 +1,8 @@
 <script setup lang="ts">
 	const store = useFolderStore();
+	const linkStore = useLinkStore();
+	const { addNewLink } = linkStore;
+	const {} = storeToRefs(linkStore);
 	const { currentFolder } = storeToRefs(store);
 
 	definePageMeta({
@@ -9,6 +12,13 @@
 	const openModal = ref<boolean>(false);
 	const nameInputValue = ref<string>();
 	const linkInputValue = ref<string>();
+
+	async function onAddNewLink() {
+		if (nameInputValue.value && linkInputValue.value && currentFolder.value) {
+			await addNewLink(nameInputValue.value, linkInputValue.value, currentFolder.value?.id);
+			openModal.value = false;
+		}
+	}
 </script>
 
 <template>
@@ -42,6 +52,8 @@
 				</template>
 				<template #footer>
 					<UiButton
+						@handle-click="onAddNewLink"
+						type="submit"
 						intent="accent"
 						size="large">
 						Submit
