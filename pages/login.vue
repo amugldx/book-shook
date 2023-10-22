@@ -3,7 +3,7 @@
 	const password = ref<string>('test');
 
 	async function login() {
-		const { data, pending } = await useFetch('/api/login', {
+		const { data } = await useFetch('/api/login', {
 			method: 'POST',
 			body: {
 				username: username.value,
