@@ -15,9 +15,6 @@ export default defineEventHandler(async event => {
 		where: {
 			userId: cookies.BookShookUser,
 		},
-		include: {
-			links: true,
-		},
 	});
 	return folders;
 });
