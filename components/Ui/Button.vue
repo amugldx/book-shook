@@ -5,7 +5,7 @@
 	const buttonClass = computed(() => {
 		return twMerge(
 			cva(
-				'px-4 py-1 disabled:cursor-not-allowed disabled:opacity-80 rounded-lg flex hover:shadow-md  justify-center items-center transition-all',
+				'px-4 py-1  rounded-lg flex hover:shadow-md  justify-center items-center transition-all',
 				{
 					variants: {
 						intent: {
@@ -28,23 +28,23 @@
 
 	const {
 		intent = 'primary',
-		isLoading,
 		size,
 		type,
 	} = defineProps<{
 		intent: 'primary' | 'secondary' | 'accent';
 		size?: 'icon' | 'large';
 		type?: 'submit';
-		isLoading?: boolean;
 	}>();
+
+	defineEmits(['handleClick']);
 </script>
 
 <template>
 	<div>
 		<button
+			@click="$emit('handleClick')"
 			:class="buttonClass"
 			:type="type"
-			:disabled="isLoading"
 			><slot
 		/></button>
 	</div>
