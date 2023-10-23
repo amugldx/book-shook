@@ -18,10 +18,12 @@ export default defineEventHandler(async event => {
 		);
 	}
 
+	const newName = body.name.replace('/', '|');
+
 	const folder = await event.context.prisma.folder
 		.create({
 			data: {
-				name: body.name,
+				name: newName,
 				userId: cookies.BookShookUser,
 			},
 		})
