@@ -1,25 +1,21 @@
 <script setup lang="ts">
 	const username = ref<string>('test');
 	const password = ref<string>('test');
-	const error = ref<string>('');
+	const errorValue = ref<string>();
 
 	async function login() {
-		try {
-			const { data } = await useFetch('/api/login', {
-				method: 'POST',
-				body: {
-					username: username.value,
-					password: password.value,
-				},
-			});
-			if (data) {
-				error.value = '';
-				navigateTo('/');
-			}
-		} catch (e) {
-			if (e) {
-				error.value = 'Username does not exists';
-			}
+		const { error, status } = await useFetch('/api/login', {
+			method: 'POST',
+			body: {
+				username: username.value,
+				password: password.value,
+			},
+		});
+		if (error.value || status.value === 'error') {
+			errorValue.value = 'Username does not exists.';
+		} else {
+			errorValue.value = '';
+			navigateTo('/');
 		}
 	}
 
@@ -67,9 +63,9 @@
 						v-model="password"
 						label="Password" />
 					<p
-						v-if="error"
+						v-if="errorValue"
 						class="mb-8 text-red-500"
-						>{{ error }}</p
+						>{{ errorValue }}</p
 					>
 					<div class="flex justify-end">
 						<UiButton
