@@ -1,17 +1,25 @@
 <script setup lang="ts">
 	const username = ref<string>('test');
 	const password = ref<string>('test');
+	const error = ref<string>();
 
 	async function login() {
-		const { data } = await useFetch('/api/login', {
-			method: 'POST',
-			body: {
-				username: username.value,
-				password: password.value,
-			},
-		});
-		if (data) {
-			navigateTo('/');
+		try {
+			const { data } = await useFetch('/api/login', {
+				method: 'POST',
+				body: {
+					username: username.value,
+					password: password.value,
+				},
+			});
+			if (data) {
+				error.value = '';
+				navigateTo('/');
+			}
+		} catch (e) {
+			if (e) {
+				error.value = 'Username does not exists';
+			}
 		}
 	}
 
@@ -54,10 +62,15 @@
 						class="mb-4"
 						:focus="true" />
 					<UiInput
-						class="mb-8"
+						class="mb-2"
 						type="password"
 						v-model="password"
 						label="Password" />
+					<p
+						v-if="error"
+						class="mb-8"
+						>{{ error }}</p
+					>
 					<div class="flex justify-end">
 						<UiButton
 							@handleClick="login"
