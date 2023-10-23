@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	const username = ref<string>('test');
 	const password = ref<string>('test');
-	const error = ref<string>();
+	const error = ref<string>('');
 
 	async function login() {
 		try {
