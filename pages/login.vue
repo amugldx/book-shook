@@ -64,7 +64,7 @@
 						label="Password" />
 					<p
 						v-if="errorValue"
-						class="mb-8 text-red-500"
+						class="mb-8 text-sm font-bold text-red-500"
 						>{{ errorValue }}</p
 					>
 					<div class="flex justify-end">
