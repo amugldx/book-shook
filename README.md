@@ -1,10 +1,28 @@
-# Nuxt 3 Minimal Starter
+# Book Shook
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Visit [Book Shook Website](book-shook.vercel.app) for demo.
+
+I built this application for personal use. I always had issues with web brower by opening hundreds of tabs. It slows down my PC's performance. So i built this web based bookmarks manager to keep my bookmarks in a safe place. Whether i am on my laptop, mobile or PC i can always have my bookmarks on click away.
+
+## Tech Stack
+
+I am using nuxt 3 for both frontend and backend. I am using Neondb postgres database with prisma ORM. And tailwind for styling.
+
+## Testing
+
+for testing you can visit my book-shook website and enter following to login.
+
+```bash
+# Username
+test
+
+# Password
+test
+```
 
 ## Setup
 
-Make sure to install the dependencies:
+If you want to deploy this project for your own use, Then follow the instructions below.
 
 ```bash
 # npm
@@ -20,56 +38,17 @@ yarn install
 bun install
 ```
 
-## Development Server
+## Install prisma
 
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
+You also need to generate prisma client. And add database variables in .env file.
 
 ```bash
-# npm
-npm run build
+# Prisma
+npx prisma generate
 
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+# Create .env file in root directory and add
+DATABASE_URL= your database url
+DIRECT_URL= your direct url
 ```
 
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+That's it. Done! Happy coding 😎

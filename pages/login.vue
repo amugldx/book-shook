@@ -4,6 +4,7 @@
 	const errorValue = ref<string>();
 
 	async function login() {
+		errorValue.value = '';
 		const { error, status } = await useFetch('/api/login', {
 			method: 'POST',
 			body: {
