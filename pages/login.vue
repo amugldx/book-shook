@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	const username = ref<string>('test');
 	const password = ref<string>('test');
-	const errorValue = ref<string>();
+	const errorValue = ref<string>('');
 
 	async function login() {
 		errorValue.value = '';
@@ -64,7 +64,7 @@
 						v-model="password"
 						label="Password" />
 					<p
-						v-if="errorValue"
+						v-if="errorValue && errorValue !== ''"
 						class="mb-8 text-sm font-bold text-red-500"
 						>{{ errorValue }}</p
 					>
