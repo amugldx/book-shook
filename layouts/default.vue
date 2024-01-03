@@ -2,7 +2,7 @@
 
 <template>
 	<div
-		class="min-h-screen p-3 md:p-4 lg:p-5 xl:p-6 2xl:p-7 bg-background-50 dark:bg-background-950">
+		class="relative min-h-screen p-3 md:p-4 lg:p-5 xl:p-6 2xl:p-7 bg-background-50 dark:bg-background-950">
 		<Navbar />
 		<slot />
 		<Footer />
